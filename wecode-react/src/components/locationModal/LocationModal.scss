@@ -1,0 +1,154 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: #FFFFFF;
+  border-radius: 0;
+  padding: 2rem;
+  width: 38.125rem;
+  height: 24.625rem;
+  position: relative;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #EEEEEE;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #1D1D1D;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.modal-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #1D1D1D;
+  margin-bottom: 3rem;
+  padding-right: 2rem;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.form-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1D1D1D;
+
+  .required {
+    color: #B11B26;
+  }
+}
+
+.form-input {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 0.0625rem solid #E0E0E0;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: #B11B26;
+  }
+
+  &::placeholder {
+    color: #999;
+  }
+
+  &:disabled {
+    background: #F7F7F7;
+    cursor: not-allowed;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.submit-btn {
+  width: 100%;
+  background: #B11B26;
+  color: #FFFFFF;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1rem;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #8F1520;
+  }
+
+  &:disabled {
+    background: #CCC;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 48rem) {
+  .modal-content {
+    width: calc(100% - 2rem);
+    height: auto;
+    padding: 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .submit-btn {
+    padding: 0.875rem;
+  }
+}
