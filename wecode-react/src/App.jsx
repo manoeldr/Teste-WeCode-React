@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from './components/Header/Header';
 import BannerPrincipal from './components/banner-principal/banner-principal';
+import Categories from './components/categories/categories';
 import './App.scss';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Header cartCount={cartCount} />
       <main>
         <BannerPrincipal />
+        <Categories />
       </main>
     </div>
   );
