@@ -126,7 +126,7 @@ export default function Header({ cartCount = 0 }) {
               )}
             </div>
 
-            <div className="nav-item">
+            <div className="nav-item nav-item-outlet">
               <a 
                 href="#" 
                 className={`nav-link outlet ${activeNav === 'outlet' ? 'active' : ''}`}
@@ -138,7 +138,7 @@ export default function Header({ cartCount = 0 }) {
                 <img 
                   src="/assets/menu-products/menu-bar.svg" 
                   alt="Indicador" 
-                  className="nav-indicator"
+                  className="outlet-indicator"
                 />
               )}
             </div>

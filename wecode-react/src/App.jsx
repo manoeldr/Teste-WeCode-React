@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import Header from './components/header/Header';
+import Header from './components/Header/Header';
+import BannerPrincipal from './components/banner-principal/banner-principal';
 import './App.scss';
 
 function App() {
@@ -9,9 +10,7 @@ function App() {
     <div className="app">
       <Header cartCount={cartCount} />
       <main>
-        <h1 style={{ marginTop: '100px', textAlign: 'center' }}>
-          Wecode React - Header funcionando
-        </h1>
+        <BannerPrincipal />
       </main>
     </div>
   );
