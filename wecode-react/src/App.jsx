@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './components/Header/Header';
 import BannerPrincipal from './components/banner-principal/banner-principal';
 import Categories from './components/categories/categories';
+import NavigationBanners from './components/navigation-banners/navigation-banners';
 import './App.scss';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <main>
         <BannerPrincipal />
         <Categories />
+        <NavigationBanners />
       </main>
     </div>
   );
