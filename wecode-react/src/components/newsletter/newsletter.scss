@@ -27,6 +27,13 @@
   }
 }
 
+.newsletter-success-text {
+  font-family: $font-family;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: $color-text;
+}
+
 .newsletter-form {
   display: flex;
   gap: 1rem;
@@ -71,6 +78,49 @@
   }
 }
 
+.coupon-container {
+  display: flex;
+  gap: 0;
+}
+
+.coupon-code {
+  width: 22.25rem;
+  height: 2.875rem;
+  background: $color-white;
+  border: 0.0625rem dashed $color-primary;
+  border-right: none;
+  border-radius: 6.25rem 0 0 6.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: $color-primary;
+}
+
+.coupon-button {
+  width: 9rem;
+  height: 2.875rem;
+  background: $color-primary;
+  color: $color-white;
+  border: 0.0625rem solid $color-primary;
+  border-radius: 0 6.25rem 6.25rem 0;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &.copied {
+    opacity: 0.8;
+  }
+}
+
 @media (max-width: 48rem) {
   .newsletter {
     height: auto;
@@ -91,5 +141,13 @@
   .newsletter-input,
   .newsletter-button {
     width: 100%;
+  }
+
+  .coupon-container {
+    width: 100%;
+  }
+
+  .coupon-code {
+    flex: 1;
   }
 }

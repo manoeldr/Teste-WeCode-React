@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import SizeModal from '../size-modal/size-modal';
 import './lancamentos.scss';
 
-export default function Lancamentos() {
+export default function Lancamentos({ onAddToCart }) {
   const [favorites, setFavorites] = useState({});
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const products = [
     {
@@ -58,6 +60,18 @@ export default function Lancamentos() {
     return Math.round(discount);
   };
 
+  const handleAddClick = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
+
+  const handleAddToCart = (productWithSize) => {
+    onAddToCart(productWithSize);
+  };
+
   return (
     <section className="lancamentos">
       <div className="lancamentos-container">
@@ -104,7 +118,10 @@ export default function Lancamentos() {
                 </div>
               </div>
 
-              <button className="add-cart-btn">
+              <button 
+                className="add-cart-btn"
+                onClick={() => handleAddClick(product)}
+              >
                 <img 
                   src="/assets/icons/shop/add-cart.svg" 
                   alt="Adicionar ao carrinho"
@@ -114,6 +131,14 @@ export default function Lancamentos() {
           ))}
         </div>
       </div>
+
+      {selectedProduct && (
+        <SizeModal
+          product={selectedProduct}
+          onClose={handleCloseModal}
+          onAddToCart={handleAddToCart}
+        />
+      )}
     </section>
   );
 }

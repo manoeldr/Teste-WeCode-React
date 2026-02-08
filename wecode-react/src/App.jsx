@@ -10,16 +10,20 @@ import Footer from './components/footer/footer';
 import './App.scss';
 
 function App() {
-  const [cartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleAddToCart = (product) => {
+    setCartItems(prev => [...prev, product]);
+  };
 
   return (
     <div className="app">
-      <Header cartCount={cartCount} />
+      <Header cartCount={cartItems.length} />
       <main>
         <BannerPrincipal />
         <Categories />
         <NavigationBanners />
-        <Lancamentos />
+        <Lancamentos onAddToCart={handleAddToCart} />
         <Blog />
         <Newsletter />
       </main>
