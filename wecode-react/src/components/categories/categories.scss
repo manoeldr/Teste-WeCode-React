@@ -1,30 +1,29 @@
 .categories {
   width: 100%;
-  margin-top: 40rem;
+  margin-top: 55rem;
   height: 42.4375rem;
-  padding: 1rem 0 4rem 0;
+  padding: 3.5rem 5rem 4rem 5rem;
   background: #FFFFFF;
 }
 
 .categories-container {
-  max-width: 90rem;
+  max-width: 110rem;
   margin: 0 auto;
-  padding: 0 5rem;
 }
 
 .categories-title {
   width: 8.6875rem;
   height: 2.375rem;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: 400;
   color: #1D1D1D;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 26.75rem);
   gap: 1rem;
 }
 
@@ -39,9 +38,8 @@
   cursor: pointer;
 
   img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 428 / 462;
+    width: 26.75rem;
+    height: 30.5625rem;
     object-fit: cover;
     display: block;
   }

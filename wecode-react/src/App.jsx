@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import BannerPrincipal from './components/banner-principal/banner-principal';
 import Categories from './components/categories/categories';
 import NavigationBanners from './components/navigation-banners/navigation-banners';
+import Lancamentos from './components/lancamentos/lancamentos';
 import './App.scss';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <BannerPrincipal />
         <Categories />
         <NavigationBanners />
+        <Lancamentos />
       </main>
     </div>
   );

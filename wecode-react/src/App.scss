@@ -1,3 +1,35 @@
+$color-primary: #B11B26;
+$color-text: #1D1D1D;
+$color-white: #FFFFFF;
+$color-background: #F7F7F7;
+
+$font-family: 'Open Sans', sans-serif;
+
+$section-title-size: 1.75rem;
+$section-title-weight: 400;
+$section-title-color: $color-text;
+
+$category-name-size: 1rem;
+$category-name-weight: 300;
+
+$text-regular-size: 1rem;
+$text-small-size: 0.875rem;
+
+$container-max-width: 90rem;
+$container-padding: 5rem;
+$container-padding-mobile: 2rem;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 3rem;
+$spacing-xl: 4rem;
+
+$header-height: 3.44rem;
+$topbar-height: 2.44rem;
+
+$breakpoint-mobile: 48rem;
+
 * {
   margin: 0;
   padding: 0;
@@ -5,18 +37,18 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  color: #1D1D1D;
-  background: #FFFFFF;
-  padding-top: calc(2.44rem + 3.44rem);
+  font-family: $font-family;
+  color: $color-text;
+  background: $color-white;
+  padding-top: calc($topbar-height + $header-height);
 }
 
 .app {
   min-height: 100vh;
 }
 
-@media (max-width: 48rem) {
+@media (max-width: $breakpoint-mobile) {
   body {
-    padding-top: calc(2rem + 3.44rem);
+    padding-top: calc(2rem + $header-height);
   }
 }
