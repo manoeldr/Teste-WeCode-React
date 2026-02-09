@@ -52,3 +52,12 @@ body {
     padding-top: calc(2rem + $header-height);
   }
 }
+
+// Breakpoints
+$breakpoint-mobile: 24.5625rem; // 393px
+$breakpoint-tablet: 48rem; // 768px
+$breakpoint-desktop: 90rem; // 1440px
+
+// Mobile specific
+$mobile-width: 24.5625rem; // 393px
+$mobile-height: 53.25rem; // 852px

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import LocationModal from '../LocationModal/LocationModal';
+import MobileMenu from '../mobile-menu/mobile-menu';
 import './Header.scss';
 
 export default function Header({ cartCount = 0, onCartClick }) {
@@ -11,6 +12,7 @@ export default function Header({ cartCount = 0, onCartClick }) {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState('sapatos');
   const [activeNav, setActiveNav] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const products = [
     { id: 'sapatos', name: 'Sapatos', image: '/assets/menu-products/menu-products-1.svg' },
@@ -84,12 +86,13 @@ export default function Header({ cartCount = 0, onCartClick }) {
 
       <header className={`header ${scrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
-          <div className="header-logo">
+          {/* Desktop */}
+          <div className="header-logo desktop-only">
             <img src="/assets/img/logo_white.svg" alt="Logo" className="logo-white" />
             <img src="/assets/img/logo_gray.svg" alt="Logo" className="logo-gray" />
           </div>
 
-          <nav className="header-nav">
+          <nav className="header-nav desktop-only">
             <div className="nav-item dropdown">
               <button 
                 className={`nav-link ${activeNav === 'produtos' ? 'active' : ''}`}
@@ -144,7 +147,32 @@ export default function Header({ cartCount = 0, onCartClick }) {
             </div>
           </nav>
 
-          <div className="header-right">
+          {/* Mobile */}
+          <div className="header-mobile mobile-only">
+            <button className="icon-button" onClick={() => setIsMobileMenuOpen(true)}>
+              <img src="/assets/icons/menu.svg" alt="Menu" />
+            </button>
+            
+            <button className="icon-button">
+              <img src="/assets/icons/search.svg" alt="Buscar" />
+            </button>
+
+            <div className="header-logo-mobile">
+              <img src="/assets/img/logo_white.svg" alt="Logo" className="logo-white" />
+              <img src="/assets/img/logo_gray.svg" alt="Logo" className="logo-gray" />
+            </div>
+
+            <button className="icon-button">
+              <img src="/assets/icons/account.svg" alt="Conta" />
+            </button>
+
+            <button className="icon-button shop-button" onClick={onCartClick}>
+              <img src="/assets/icons/shop.svg" alt="Carrinho" />
+              <span className="cart-count">{cartCount}</span>
+            </button>
+          </div>
+
+          <div className="header-right desktop-only">
             <button className="icon-button" aria-label="Buscar">
               <img src="/assets/icons/search.svg" alt="Buscar" />
             </button>
@@ -159,7 +187,7 @@ export default function Header({ cartCount = 0, onCartClick }) {
         </div>
 
         {isProductsOpen && (
-          <div className="dropdown-menu">
+          <div className="dropdown-menu desktop-only">
             <div className="dropdown-content">
               <ul className="dropdown-list">
                 {products.map((product) => (
@@ -188,6 +216,11 @@ export default function Header({ cartCount = 0, onCartClick }) {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onSave={handleSaveLocation}
+      />
+
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
       />
     </>
   );
