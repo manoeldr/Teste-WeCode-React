@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import LocationModal from '../LocationModal/LocationModal';
 import './Header.scss';
 
-export default function Header({ cartCount = 0 }) {
+export default function Header({ cartCount = 0, onCartClick }) {
   const [scrolled, setScrolled] = useState(false);
   const [location, setLocation] = useState(() => {
     return localStorage.getItem('user_location') || 'Uberlândia, MG';
@@ -151,7 +151,7 @@ export default function Header({ cartCount = 0 }) {
             <button className="icon-button" aria-label="Conta">
               <img src="/assets/icons/account.svg" alt="Conta" />
             </button>
-            <button className="icon-button shop-button" aria-label="Carrinho">
+            <button className="icon-button shop-button" aria-label="Carrinho" onClick={onCartClick}>
               <img src="/assets/icons/shop.svg" alt="Carrinho" />
               <span className="cart-count">{cartCount}</span>
             </button>

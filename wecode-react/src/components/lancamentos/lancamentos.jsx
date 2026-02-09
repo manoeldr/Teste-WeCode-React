@@ -11,33 +11,33 @@ export default function Lancamentos({ onAddToCart }) {
       id: 1,
       name: 'Scarpin Sligback Bebecê Salto Médio Taça Detalhe Metalizado',
       price: 179.90,
-      image: '/assets/card-products/card-product-1.svg'
+      image: '/assets/card-products/card-product-6.svg'
     },
     {
       id: 2,
       name: 'Sandália Braco Blanc Tratorada...',
       price: 319.89,
       oldPrice: 459.90,
-      image: '/assets/card-products/card-product-2.svg'
+      image: '/assets/card-products/card-product-5.svg'
     },
     {
       id: 3,
       name: 'Coturno Feminino Bebecê Tratorado Detalhe Tachas',
       price: 315.00,
       oldPrice: 349.90,
-      image: '/assets/card-products/card-product-3.svg'
+      image: '/assets/card-products/card-product-2.svg'
     },
     {
       id: 4,
       name: 'Scarpin Bebecê Salto Alto Taça Com Fivela',
       price: 159.90,
-      image: '/assets/card-products/card-product-4.svg'
+      image: '/assets/card-products/card-product-3.svg'
     },
     {
       id: 5,
       name: 'Slingback Branco Tiras Bico Fino Couro',
       price: 379.90,
-      image: '/assets/card-products/card-product-5.svg'
+      image: '/assets/card-products/card-product-4.svg'
     }
   ];
 
