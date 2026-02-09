@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -5,10 +6,30 @@ import 'swiper/css/pagination';
 import './banner-principal.scss';
 
 export default function BannerPrincipal() {
-  const banners = [
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 393);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const desktopBanners = [
     '/assets/banners/banner-principal/banner-principal-1.svg',
     '/assets/banners/banner-principal/banner-principal-2.svg'
   ];
+
+  const mobileBanners = [
+    '/assets/banners/banner-principal/banner-principal-3.svg',
+    '/assets/banners/banner-principal/banner-principal-4.svg',
+    '/assets/banners/banner-principal/banner-principal-5.svg'
+  ];
+
+  const banners = isMobile ? mobileBanners : desktopBanners;
 
   return (
     <section className="banner">
