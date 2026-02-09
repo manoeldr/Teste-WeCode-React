@@ -24,9 +24,8 @@ export default function BannerPrincipal() {
         pagination={{
           clickable: true,
           el: '.banner-pagination',
-          renderBullet: (index, className) => {
-            return `<span class="${className}"></span>`;
-          },
+          bulletClass: 'banner-bullet',
+          bulletActiveClass: 'banner-bullet-active',
         }}
         className="banner-swiper"
       >
