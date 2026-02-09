@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import BannerPrincipal from './components/banner-principal/banner-principal';
 import Categories from './components/categories/categories';
 import NavigationBanners from './components/navigation-banners/navigation-banners';
