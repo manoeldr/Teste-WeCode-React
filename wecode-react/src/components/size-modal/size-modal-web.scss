@@ -1,0 +1,149 @@
+@import '../../App.scss';
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+
+  @media (max-width: 24.5625rem) {
+    align-items: flex-end;
+  }
+}
+
+@media (min-width: 24.5626rem) {
+  .modal-content {
+    background: white;
+    width: 56.4375rem;
+    height: 27.0625rem;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: $color-text;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    line-height: 1;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  .modal-image {
+    width: 27.0625rem;
+    height: 27.0625rem;
+    flex-shrink: 0;
+    margin: -1rem 0 0 -1rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .modal-info {
+    flex: 1;
+    padding: 2rem 2rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .modal-product-name {
+    font-family: $font-family;
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: $color-text;
+    line-height: 1.3;
+  }
+
+  .modal-sizes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .modal-sizes-title {
+    font-family: $font-family;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: $color-text;
+    line-height: 100%;
+  }
+
+  .sizes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    max-width: 25.875rem;
+  }
+
+  .size-button {
+    width: 2.75rem;
+    height: 2.875rem;
+    border: 0.0625rem solid #D9D9D9;
+    background: white;
+    font-family: $font-family;
+    font-size: 1rem;
+    font-weight: 400;
+    color: $color-text;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      border-color: $color-primary;
+    }
+
+    &.selected {
+      border-color: $color-primary;
+      border-width: 0.125rem;
+      background: rgba(177, 27, 38, 0.05);
+      color: $color-primary;
+      font-weight: 600;
+    }
+  }
+
+  .add-to-cart-button {
+    width: 25.875rem;
+    height: 2.875rem;
+    background: $color-primary;
+    color: white;
+    border: none;
+    font-family: $font-family;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($color-primary, 10%);
+    }
+
+    &:disabled {
+      background: #D9D9D9;
+      cursor: not-allowed;
+    }
+  }
+}
