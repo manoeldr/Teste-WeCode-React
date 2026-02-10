@@ -1,51 +1,91 @@
-import './blog.scss';
+import { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './blog-web.scss';
+import './blog-mobile.scss';
 
 export default function Blog() {
-  const posts = [
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 393);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const blogPosts = [
     {
       id: 1,
+      title: 'Fique por dentro: Tendências em Calçados Femininos para 2024',
       image: '/assets/banners/blog/blog-1.svg',
-      title: 'É AMANHÃ',
-      description: 'SIMPLE and TRUE: lançamento da nova coleção Outono Inverno 2024 da Bebecê ❤️'
+      link: '#'
     },
     {
       id: 2,
+      title: 'Descubra o Calçado Perfeito: Guia Completo de Estilos',
       image: '/assets/banners/blog/blog-2.svg',
-      title: 'NOVO LOGO, MESMA ESSÊNCIA.',
-      description: 'Trazendo conforto através das linhas finas e grossas + uma paleta de cores vibrante e cheia de atitude, o resultado é um visual que traduz nossa essência: autêntica e surpreendente!'
+      link: '#'
     },
     {
       id: 3,
+      title: 'Cuidados Essenciais: Como Prolongar a Vida dos Seus Calçados',
       image: '/assets/banners/blog/blog-3.svg',
-      title: 'Descubra o glamour em cada passo.',
-      description: 'Quer brilhar ainda mais neste inverno sem abrir mão do conforto? Esta mule é perfeita para você. ✨'
+      link: '#'
     }
   ];
 
+  if (isMobile) {
+    return (
+      <section className="blog">
+        <h2 className="blog-title">Conheça Mais</h2>
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={0}
+          slidesPerView={1}
+          pagination={{
+            clickable: true,
+            el: '.blog-pagination',
+            bulletClass: 'blog-bullet',
+            bulletActiveClass: 'blog-bullet-active',
+          }}
+          className="blog-swiper"
+        >
+          {blogPosts.map((post) => (
+            <SwiperSlide key={post.id}>
+              <a href={post.link} className="blog-card">
+                <img src={post.image} alt={post.title} />
+                <div className="blog-card-content">
+                  <h3>{post.title}</h3>
+                  <span className="blog-link">Leia mais</span>
+                </div>
+              </a>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="blog-pagination"></div>
+      </section>
+    );
+  }
+
   return (
     <section className="blog">
-      <div className="blog-container">
-        <div className="blog-header">
-          <h2 className="blog-section-title">Conheça Mais</h2>
-          <p className="blog-subtitle">Fique por dentro de tudo que acontece na Bebecê.</p>
-        </div>
-
-        <div className="blog-grid">
-          {posts.map((post) => (
-            <article key={post.id} className="blog-card">
-              <img 
-                src={post.image} 
-                alt={post.title}
-                className="blog-image"
-              />
-              <div className="blog-content">
-                <h3 className="blog-title">{post.title}</h3>
-                <p className="blog-description">{post.description}</p>
-                <a href="#" className="blog-link">Saiba mais!</a>
-              </div>
-            </article>
-          ))}
-        </div>
+      <h2 className="blog-title">Conheça Mais</h2>
+      <div className="blog-grid">
+        {blogPosts.map((post) => (
+          <a key={post.id} href={post.link} className="blog-card">
+            <img src={post.image} alt={post.title} />
+            <div className="blog-card-content">
+              <h3>{post.title}</h3>
+              <span className="blog-link">Leia mais</span>
+            </div>
+          </a>
+        ))}
       </div>
     </section>
   );
