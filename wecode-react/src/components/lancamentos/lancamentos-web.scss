@@ -1,0 +1,140 @@
+@import '../../App.scss';
+
+@media (min-width: 24.5626rem) {
+  .lancamentos {
+    width: 100%;
+    height: 36.84375rem;
+    background: $color-white;
+    padding: 4rem 15.625rem;
+  }
+
+  .lancamentos-title {
+    font-family: $font-family;
+    font-size: 2rem;
+    font-weight: 300;
+    color: $color-text;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    cursor: pointer;
+  }
+
+  .product-image {
+    position: relative;
+    width: 100%;
+    height: 18.75rem;
+    background: $color-background;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .favorite-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: $color-white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      opacity: 0;
+
+      img {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .add-button {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: $color-white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      opacity: 0;
+
+      img {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    &:hover {
+      .add-button,
+      .favorite-button {
+        opacity: 1;
+      }
+    }
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .product-name {
+    font-family: $font-family;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $color-text;
+    line-height: 1.2;
+  }
+
+  .product-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .old-price {
+    font-family: $font-family;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #8A8A8A;
+    text-decoration: line-through;
+  }
+
+  .current-price {
+    font-family: $font-family;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-text;
+  }
+}
