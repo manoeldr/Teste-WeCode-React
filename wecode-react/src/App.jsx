@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Header from './components/header/Header';
+import Header from './components/Header/Header';
 import BannerPrincipal from './components/banner-principal/banner-principal';
 import Categories from './components/categories/categories';
 import NavigationBanners from './components/navigation-banners/navigation-banners';
@@ -15,41 +15,55 @@ function App() {
   const [isMinicartOpen, setIsMinicartOpen] = useState(false);
 
   const handleAddToCart = (product) => {
-    const existingItemIndex = cartItems.findIndex(
-      item => item.id === product.id && item.size === product.size
-    );
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(
+        item => item.id === product.id && item.selectedSize === product.selectedSize
+      );
 
-    if (existingItemIndex >= 0) {
-      const updatedItems = [...cartItems];
-      updatedItems[existingItemIndex].quantity += 1;
-      setCartItems(updatedItems);
-    } else {
-      setCartItems(prev => [...prev, { ...product, quantity: 1 }]);
-    }
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === product.id && item.selectedSize === product.selectedSize
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      return [...prevItems, { ...product, quantity: 1 }];
+    });
+    
+    // Abre o minicart automaticamente
     setIsMinicartOpen(true);
   };
 
   const handleRemoveItem = (index) => {
-    setCartItems(prev => prev.filter((_, i) => i !== index));
+    setCartItems(prevItems => prevItems.filter((_, i) => i !== index));
   };
 
   const handleUpdateQuantity = (index, change) => {
-    setCartItems(prev => prev.map((item, i) => {
-      if (i === index) {
-        const newQuantity = item.quantity + change;
-        if (newQuantity > 0) {
-          return { ...item, quantity: newQuantity };
+    setCartItems(prevItems =>
+      prevItems.map((item, i) => {
+        if (i === index) {
+          const newQuantity = item.quantity + change;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : item;
         }
-      }
-      return item;
-    }));
+        return item;
+      }).filter(item => item.quantity > 0)
+    );
+  };
+
+  const handleOpenMinicart = () => {
+    setIsMinicartOpen(true);
+  };
+
+  const handleCloseMinicart = () => {
+    setIsMinicartOpen(false);
   };
 
   return (
     <div className="app">
       <Header 
         cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-        onCartClick={() => setIsMinicartOpen(true)}
+        onCartClick={handleOpenMinicart}
       />
       <main>
         <BannerPrincipal />
@@ -57,12 +71,12 @@ function App() {
         <NavigationBanners />
         <Lancamentos onAddToCart={handleAddToCart} />
         <Blog />
-        <Newsletter />
       </main>
+      <Newsletter />
       <Footer />
-      <Minicart 
+      <Minicart
         isOpen={isMinicartOpen}
-        onClose={() => setIsMinicartOpen(false)}
+        onClose={handleCloseMinicart}
         cartItems={cartItems}
         onRemoveItem={handleRemoveItem}
         onUpdateQuantity={handleUpdateQuantity}

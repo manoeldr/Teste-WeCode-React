@@ -1,6 +1,20 @@
-import './minicart.scss';
+import { useState, useEffect } from 'react';
+import './minicart-web.scss';
+import './minicart-mobile.scss';
 
 export default function Minicart({ isOpen, onClose, cartItems = [], onRemoveItem, onUpdateQuantity }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 393);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   if (!isOpen) return null;
 
   const calculateSubtotal = () => {
@@ -30,7 +44,7 @@ export default function Minicart({ isOpen, onClose, cartItems = [], onRemoveItem
   return (
     <>
       <div className="minicart-overlay" onClick={onClose} />
-      <div className={`minicart ${isOpen ? 'open' : ''}`}>
+      <div className={`minicart ${isOpen ? 'open' : ''} ${isMobile ? 'mobile' : ''}`}>
         <div className="minicart-header">
           <h2 className="minicart-title">Carrinho</h2>
           <button className="minicart-close" onClick={onClose}>
@@ -52,7 +66,7 @@ export default function Minicart({ isOpen, onClose, cartItems = [], onRemoveItem
                     
                     <div className="cart-item-details">
                       <h3 className="cart-item-name">{item.name}</h3>
-                      <p className="cart-item-size">Tamanho: <span>{item.size}</span></p>
+                      <p className="cart-item-size">Tamanho: <span>{item.selectedSize}</span></p>
                       <p className="cart-item-price">{formatPrice(item.price)}</p>
                     </div>
                   </div>
@@ -89,7 +103,6 @@ export default function Minicart({ isOpen, onClose, cartItems = [], onRemoveItem
                 <span className="total-value">{formatPrice(total)}</span>
               </div>
             </div>
-
             <div className="footer-actions">
               <button className="checkout-button">Finalizar pedido</button>
               <button className="continue-shopping" onClick={onClose}>
