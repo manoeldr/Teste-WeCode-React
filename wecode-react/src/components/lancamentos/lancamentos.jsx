@@ -112,6 +112,12 @@ export default function Lancamentos({ onAddToCart }) {
     return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   };
 
+  const calculateDiscount = (price, oldPrice) => {
+    if (!oldPrice) return null;
+    const discount = ((oldPrice - price) / oldPrice) * 100;
+    return Math.round(discount);
+  };
+
   if (isMobile) {
     return (
       <section className="lancamentos">
@@ -128,33 +134,39 @@ export default function Lancamentos({ onAddToCart }) {
           }}
           className="lancamentos-swiper"
         >
-          {products.map((product) => (
-            <SwiperSlide key={product.id}>
-              <div className="product-card">
-                <div className="product-image">
-                  <img src={product.image} alt={product.name} />
-                  <button className="favorite-button" onClick={() => handleToggleFavorite(product.id)}>
-                    <img 
-                      src={isFavorite(product.id) ? "/assets/icons/shop/heart-b.svg" : "/assets/icons/shop/heart-w.svg"} 
-                      alt="Favoritar" 
-                    />
-                  </button>
-                  <button className="add-button" onClick={() => handleAddClick(product)}>
-                    <img src="/assets/icons/shop/add-cart.svg" alt="Adicionar" />
-                  </button>
-                </div>
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                  <div className="product-price">
-                    {product.oldPrice && (
-                      <span className="old-price">{formatPrice(product.oldPrice)}</span>
+          {products.map((product) => {
+            const discount = calculateDiscount(product.price, product.oldPrice);
+            return (
+              <SwiperSlide key={product.id}>
+                <div className="product-card">
+                  <div className="product-image">
+                    <img src={product.image} alt={product.name} />
+                    {discount && (
+                      <span className="discount-badge">{discount}% OFF</span>
                     )}
-                    <span className="current-price">{formatPrice(product.price)}</span>
+                    <button className="favorite-button" onClick={() => handleToggleFavorite(product.id)}>
+                      <img 
+                        src={isFavorite(product.id) ? "/assets/icons/shop/heart-b.svg" : "/assets/icons/shop/heart-w.svg"} 
+                        alt="Favoritar" 
+                      />
+                    </button>
+                    <button className="add-button" onClick={() => handleAddClick(product)}>
+                      <img src="/assets/icons/shop/add-cart.svg" alt="Adicionar" />
+                    </button>
+                  </div>
+                  <div className="product-info">
+                    <h3 className="product-name">{product.name}</h3>
+                    <div className="product-price">
+                      {product.oldPrice && (
+                        <span className="old-price">{formatPrice(product.oldPrice)}</span>
+                      )}
+                      <span className="current-price">{formatPrice(product.price)}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
         <div className="lancamentos-pagination"></div>
 
@@ -173,31 +185,37 @@ export default function Lancamentos({ onAddToCart }) {
     <section className="lancamentos">
       <h2 className="lancamentos-title">Lançamentos</h2>
       <div className="products-grid">
-        {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <div className="product-image">
-              <img src={product.image} alt={product.name} />
-              <button className="favorite-button" onClick={() => handleToggleFavorite(product.id)}>
-                <img 
-                  src={isFavorite(product.id) ? "/assets/icons/shop/heart-b.svg" : "/assets/icons/shop/heart-w.svg"} 
-                  alt="Favoritar" 
-                />
-              </button>
-              <button className="add-button" onClick={() => handleAddClick(product)}>
-                <img src="/assets/icons/shop/add-cart.svg" alt="Adicionar" />
-              </button>
-            </div>
-            <div className="product-info">
-              <h3 className="product-name">{product.name}</h3>
-              <div className="product-price">
-                {product.oldPrice && (
-                  <span className="old-price">{formatPrice(product.oldPrice)}</span>
+        {products.map((product) => {
+          const discount = calculateDiscount(product.price, product.oldPrice);
+          return (
+            <div key={product.id} className="product-card">
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+                {discount && (
+                  <span className="discount-badge">{discount}% OFF</span>
                 )}
-                <span className="current-price">{formatPrice(product.price)}</span>
+                <button className="favorite-button" onClick={() => handleToggleFavorite(product.id)}>
+                  <img 
+                    src={isFavorite(product.id) ? "/assets/icons/shop/heart-b.svg" : "/assets/icons/shop/heart-w.svg"} 
+                    alt="Favoritar" 
+                  />
+                </button>
+                <button className="add-button" onClick={() => handleAddClick(product)}>
+                  <img src="/assets/icons/shop/add-cart.svg" alt="Adicionar" />
+                </button>
+              </div>
+              <div className="product-info">
+                <h3 className="product-name">{product.name}</h3>
+                <div className="product-price">
+                  {product.oldPrice && (
+                    <span className="old-price">{formatPrice(product.oldPrice)}</span>
+                  )}
+                  <span className="current-price">{formatPrice(product.price)}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {selectedProduct && (

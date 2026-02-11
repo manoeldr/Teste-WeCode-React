@@ -8,6 +8,20 @@
     padding: 4rem 15.625rem;
   }
 
+ .discount-badge {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  background: transparent;
+  color: #B11B26;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0;
+  border: none;
+  z-index: 2;
+  }
+
   .lancamentos-title {
     font-family: $font-family;
     font-size: 2rem;
