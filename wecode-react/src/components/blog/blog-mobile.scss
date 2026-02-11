@@ -2,23 +2,28 @@
 
 @media (max-width: 24.5625rem) {
   .blog {
-    height: 31.89875rem !important;
-    padding: 2rem 1rem !important;
+    height: 31.89875rem;
+    padding: 2rem 1rem;
     background: #F7F7F7;
   }
 
   .blog-title {
-    font-size: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
-    text-align: left !important;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
     font-family: $font-family;
     font-weight: 300;
     color: $color-text;
   }
 
+  .blog-grid {
+    display: none;
+  }
+
   .blog-swiper {
     width: 100%;
     padding-bottom: 2rem;
+    display: block;
   }
 
   .blog-card {
@@ -27,7 +32,6 @@
     text-decoration: none;
     width: 22.5625rem;
     height: 21.89875rem;
-    position: relative;
 
     img {
       width: 22.5625rem;
@@ -74,7 +78,6 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: block;
 
     &.blog-bullet-active {
       width: 1.625rem;

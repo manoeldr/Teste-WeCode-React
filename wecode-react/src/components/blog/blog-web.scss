@@ -5,7 +5,7 @@
     width: 100%;
     height: 46.63375rem;
     background: #FFFFFF;
-    padding: 4rem 15.625rem;
+    padding: 4rem 10rem;
   }
 
   .blog-title {
@@ -19,10 +19,11 @@
 
   .blog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 36rem);
     gap: 2rem;
-    max-width: 75rem;
+    max-width: none;
     margin: 0 auto;
+    justify-content: center;
   }
 
   .blog-card {
@@ -31,14 +32,16 @@
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.3s ease;
+    width: 36rem;
+    height: 32.07125rem;
 
     &:hover {
       transform: translateY(-0.5rem);
     }
 
     img {
-      width: 100%;
-      height: 15.625rem;
+      width: 36rem;
+      height: 25rem;
       object-fit: cover;
     }
   }
@@ -47,15 +50,23 @@
     padding: 1.5rem 0;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
+  }
 
-    h3 {
-      font-family: $font-family;
-      font-size: 1.125rem;
-      font-weight: 400;
-      color: $color-text;
-      line-height: 1.4;
-    }
+  .blog-card-title {
+    font-family: $font-family;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $color-text;
+    line-height: 1.4;
+  }
+
+  .blog-card-text {
+    font-family: $font-family;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $color-text;
+    line-height: 1.4;
   }
 
   .blog-link {
@@ -64,5 +75,6 @@
     font-weight: 400;
     color: $color-primary;
     text-decoration: underline;
+    margin-top: 0.5rem;
   }
 }

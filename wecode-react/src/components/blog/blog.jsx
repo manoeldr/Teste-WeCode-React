@@ -22,19 +22,22 @@ export default function Blog() {
   const blogPosts = [
     {
       id: 1,
-      title: 'Fique por dentro: Tendências em Calçados Femininos para 2024',
+      title: 'É AMANHÃ',
+      text: 'SIMPLE and TRUE: lançamento da nova coleção Outono Inverno 2024 da Bebecê ❤️',
       image: '/assets/banners/blog/blog-1.svg',
       link: '#'
     },
     {
       id: 2,
-      title: 'Descubra o Calçado Perfeito: Guia Completo de Estilos',
+      title: 'NOVO LOGO, MESMA ESSÊNCIA.',
+      text: 'Trazendo conforto através das linhas finas e grossas + uma paleta de cores vibrante e cheia de atitude, o resultado é um visual que traduz nossa essência: autêntica e surpreendente!',
       image: '/assets/banners/blog/blog-2.svg',
       link: '#'
     },
     {
       id: 3,
-      title: 'Cuidados Essenciais: Como Prolongar a Vida dos Seus Calçados',
+      title: 'Descubra o glamour em cada passo.',
+      text: 'Quer brilhar ainda mais neste inverno sem abrir mão do conforto? Esta mule é perfeita para você. ✨',
       image: '/assets/banners/blog/blog-3.svg',
       link: '#'
     }
@@ -61,7 +64,8 @@ export default function Blog() {
               <a href={post.link} className="blog-card">
                 <img src={post.image} alt={post.title} />
                 <div className="blog-card-content">
-                  <h3>{post.title}</h3>
+                  <h3 className="blog-card-title">{post.title}</h3>
+                  <p className="blog-card-text">{post.text}</p>
                   <span className="blog-link">Leia mais</span>
                 </div>
               </a>
@@ -81,7 +85,8 @@ export default function Blog() {
           <a key={post.id} href={post.link} className="blog-card">
             <img src={post.image} alt={post.title} />
             <div className="blog-card-content">
-              <h3>{post.title}</h3>
+              <h3 className="blog-card-title">{post.title}</h3>
+              <p className="blog-card-text">{post.text}</p>
               <span className="blog-link">Leia mais</span>
             </div>
           </a>
