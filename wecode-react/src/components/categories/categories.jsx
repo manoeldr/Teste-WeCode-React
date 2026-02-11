@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import './categories.scss';
+import './categories-web.scss';
+import './categories-mobile.scss';
 
 export default function Categories() {
   const [isMobile, setIsMobile] = useState(false);
