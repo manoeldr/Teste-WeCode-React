@@ -1,50 +1,15 @@
-import { useState, useEffect } from 'react';
-import './minicart-web.scss';
-import './minicart-mobile.scss';
+import { useMinicart } from '../../Main/useMinicart';
+import '../../Styles/Web/minicart-web.scss';
 
-export default function Minicart({ isOpen, onClose, cartItems = [], onRemoveItem, onUpdateQuantity }) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 393);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+export default function MinicartWeb({ isOpen, onClose, cartItems = [], onRemoveItem, onUpdateQuantity }) {
+  const { formatPrice, subtotal, discount, total } = useMinicart(cartItems);
 
   if (!isOpen) return null;
 
-  const calculateSubtotal = () => {
-    return cartItems.reduce((sum, item) => {
-      const itemPrice = item.oldPrice || item.price;
-      return sum + (itemPrice * item.quantity);
-    }, 0);
-  };
-
-  const calculateDiscount = () => {
-    return cartItems.reduce((sum, item) => {
-      if (item.oldPrice) {
-        return sum + ((item.oldPrice - item.price) * item.quantity);
-      }
-      return sum;
-    }, 0);
-  };
-
-  const subtotal = calculateSubtotal();
-  const discount = calculateDiscount();
-  const total = subtotal - discount;
-
-  const formatPrice = (price) => {
-    return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  };
-
   return (
     <>
-      <div className="minicart-overlay" onClick={onClose} />
-      <div className={`minicart ${isOpen ? 'open' : ''} ${isMobile ? 'mobile' : ''}`}>
+      <div className="minicart-overlay minicart-overlay-web" onClick={onClose} />
+      <div className={`minicart minicart-web ${isOpen ? 'open' : ''}`}>
         <div className="minicart-header">
           <h2 className="minicart-title">Carrinho</h2>
           <button className="minicart-close" onClick={onClose}>

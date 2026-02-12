@@ -1,0 +1,82 @@
+import { useMinicart } from '../../Main/useMinicart';
+import '../../Styles/Mobile/minicart-mobile.scss';
+
+export default function MinicartMobile({ isOpen, onClose, cartItems = [], onRemoveItem, onUpdateQuantity }) {
+  const { formatPrice, subtotal, discount, total } = useMinicart(cartItems);
+
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <div className="minicart-overlay minicart-overlay-mobile" onClick={onClose} />
+      <div className="minicart minicart-mobile">
+        <div className="minicart-header">
+          <button className="minicart-close" onClick={onClose}>
+            ×
+          </button>
+          <h2 className="minicart-title">Carrinho</h2>
+        </div>
+
+        <div className="minicart-content">
+          {cartItems.length === 0 ? (
+            <p className="empty-message">Seu carrinho está vazio</p>
+          ) : (
+            <div className="cart-items">
+              {cartItems.map((item, index) => (
+                <div key={index} className="cart-item">
+                  <div className="cart-item-info">
+                    <div className="cart-item-image">
+                      <img src={item.image} alt={item.name} />
+                    </div>
+                    
+                    <div className="cart-item-details">
+                      <h3 className="cart-item-name">{item.name}</h3>
+                      <p className="cart-item-size">Tamanho: <span>{item.selectedSize}</span></p>
+                      <p className="cart-item-price">{formatPrice(item.price)}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="cart-item-actions">
+                    <div className="quantity-controls">
+                      <button onClick={() => onUpdateQuantity(index, -1)}>-</button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => onUpdateQuantity(index, 1)}>+</button>
+                    </div>
+                    <button className="remove-button" onClick={() => onRemoveItem(index)}>
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {cartItems.length > 0 && (
+          <div className="minicart-footer">
+            <div className="totals">
+              <div className="total-row">
+                <span className="total-label">Subtotal</span>
+                <span className="total-value">{formatPrice(subtotal)}</span>
+              </div>
+              <div className="total-row">
+                <span className="total-label">Descontos</span>
+                <span className="total-value discount">-{formatPrice(discount)}</span>
+              </div>
+              <div className="total-row">
+                <span className="total-label">Total</span>
+                <span className="total-value">{formatPrice(total)}</span>
+              </div>
+            </div>
+            <div className="footer-actions">
+              <button className="checkout-button">Finalizar pedido</button>
+              <button className="continue-shopping" onClick={onClose}>
+                Continuar comprando
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
