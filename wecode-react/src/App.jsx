@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import HeaderWeb from './components/Scripts/Web/header-web';
 import HeaderMobile from './components/Scripts/Mobile/header-mobile';
-import BannerPrincipal from './components/banner-principal/banner-principal';
+import BannerPrincipalWeb from './components/Scripts/Web/banner-principal-web';
+import BannerPrincipalMobile from './components/Scripts/Mobile/banner-principal-mobile';
 import Categories from './components/categories/categories';
 import NavigationBanners from './components/navigation-banners/navigation-banners';
 import Lancamentos from './components/lancamentos/lancamentos';
@@ -91,7 +92,11 @@ function App() {
       )}
       
       <main>
-        <BannerPrincipal />
+        {isMobile ? (
+          <BannerPrincipalMobile key="banner-mobile" />
+        ) : (
+          <BannerPrincipalWeb key="banner-web" />
+        )}
         <Categories />
         <NavigationBanners />
         <Lancamentos onAddToCart={handleAddToCart} />
