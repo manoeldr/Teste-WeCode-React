@@ -1,0 +1,154 @@
+@import '../../../App.scss';
+
+@media (max-width: 24.5625rem) {
+  .lancamentos.lancamentos-mobile {
+    width: 24.5625rem; // 393px
+    height: 24.9375rem; // 399px
+    padding: 2rem 1rem 3rem 1rem; // 32px 16px 48px 16px
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; // 16px
+    margin-top: 0rem;
+  }
+
+  .lancamentos.lancamentos-mobile .lancamentos-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem; // 16px
+    font-weight: 400;
+    font-style: normal;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: $color-text;
+    text-align: left;
+    width: 6.3125rem; // 101px
+    height: 1.375rem; // 22px
+    margin: 0;
+  }
+
+  .lancamentos.lancamentos-mobile .lancamentos-swiper {
+    width: 22.5625rem; // 361px
+    height: 17.5625rem; // 281px
+    padding-bottom: 0;
+  }
+
+  .lancamentos.lancamentos-mobile .product-card {
+    width: 13.75rem; // 220px
+    height: 17.5625rem; // 281px
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+  }
+
+  .lancamentos.lancamentos-mobile .product-image {
+    width: 13.75rem; // 220px
+    height: 13.75rem; // 220px
+    position: relative;
+    background: $color-background;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .favorite-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 2rem;
+      height: 2rem;
+      background: $color-white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+
+      img {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    .add-button {
+      position: absolute;
+      opacity: 1;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      width: 2rem;
+      height: 2rem;
+      background: $color-white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+
+  .lancamentos.lancamentos-mobile .discount-badge {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    background: transparent;
+    color: #B11B26;
+    font-family: $font-family;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0;
+    border: none;
+    z-index: 2;
+  }
+
+  .lancamentos.lancamentos-mobile .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .lancamentos.lancamentos-mobile .product-name {
+    font-size: 0.75rem;
+    font-family: $font-family;
+    font-weight: 400;
+    color: $color-text;
+    line-height: 1.2;
+  }
+
+  .lancamentos.lancamentos-mobile .product-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .lancamentos.lancamentos-mobile .old-price {
+    font-size: 0.75rem;
+    font-family: $font-family;
+    font-weight: 400;
+    color: #8A8A8A;
+    text-decoration: line-through;
+  }
+
+  .lancamentos.lancamentos-mobile .current-price {
+    font-size: 0.875rem;
+    font-family: $font-family;
+    font-weight: 600;
+    color: $color-text;
+  }
+
+  .lancamentos.lancamentos-mobile .lancamentos-pagination {
+    display: none;
+  }
+
+  .lancamentos.lancamentos-mobile .lancamentos-bullet {
+    display: none;
+  }
+}
