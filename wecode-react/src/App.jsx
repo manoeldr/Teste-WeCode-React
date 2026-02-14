@@ -3,7 +3,8 @@ import HeaderWeb from './components/Scripts/Web/header-web';
 import HeaderMobile from './components/Scripts/Mobile/header-mobile';
 import BannerPrincipalWeb from './components/Scripts/Web/banner-principal-web';
 import BannerPrincipalMobile from './components/Scripts/Mobile/banner-principal-mobile';
-import Categories from './components/categories/categories';
+import CategoriesWeb from './components/Scripts/Web/categories-web';
+import CategoriesMobile from './components/Scripts/Mobile/categories-mobile';
 import NavigationBanners from './components/navigation-banners/navigation-banners';
 import Lancamentos from './components/lancamentos/lancamentos';
 import Blog from './components/blog/blog';
@@ -97,7 +98,13 @@ function App() {
         ) : (
           <BannerPrincipalWeb key="banner-web" />
         )}
-        <Categories />
+        
+        {isMobile ? (
+          <CategoriesMobile key="categories-mobile" />
+        ) : (
+          <CategoriesWeb key="categories-web" />
+        )}
+        
         <NavigationBanners />
         <Lancamentos onAddToCart={handleAddToCart} />
         <Blog />

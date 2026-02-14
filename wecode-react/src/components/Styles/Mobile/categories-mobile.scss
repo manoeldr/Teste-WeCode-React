@@ -1,0 +1,61 @@
+@import '../../../App.scss';
+
+@media (max-width: 24.5625rem) {
+  .categories.categories-mobile {
+    width: 24.5625rem;
+    height: 19.5625rem;
+    background: #F7F7F7;
+    padding: 2rem 1rem 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: -6rem;
+  }
+
+  .categories.categories-mobile .categories-title {
+    font-family: $font-family;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: $color-text;
+    text-align: left;
+    margin: 0;
+  }
+
+  .categories.categories-mobile .categories-grid {
+    display: none;
+  }
+
+  .categories.categories-mobile .categories-swiper {
+    width: 22.5625rem;
+    height: 12.1875rem;
+  }
+
+  .categories.categories-mobile .swiper-slide {
+    width: auto !important;
+  }
+
+  .categories.categories-mobile .category-card {
+    width: 100%;
+    height: 12.1875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+
+    img {
+      width: 100%;
+      height: 10.9375rem;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+
+    h3 {
+      font-family: $font-family;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: $color-text;
+      margin: 0;
+    }
+  }
+}
