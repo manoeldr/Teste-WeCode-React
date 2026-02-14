@@ -1,0 +1,41 @@
+@import '../../../App.scss';
+
+@media (min-width: 24.5626rem) {
+  .navigation-banners.navigation-banners-web {
+    width: 100%;
+    height: 43.75rem;
+    background: #FFFFFF;
+  }
+
+  .navigation-banners.navigation-banners-web .navigation-banners-container {
+    max-width: 120rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 75.6875rem 39.9375rem;
+    gap: 16px;
+    height: 100%;
+  }
+
+  .navigation-banners.navigation-banners-web .banner-grande {
+    width: 100%;
+    height: 43.75rem;
+    object-fit: cover;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .navigation-banners.navigation-banners-web .banner-pequeno {
+    height: 43.75rem;
+    object-fit: cover;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

@@ -5,7 +5,8 @@ import BannerPrincipalWeb from './components/Scripts/Web/banner-principal-web';
 import BannerPrincipalMobile from './components/Scripts/Mobile/banner-principal-mobile';
 import CategoriesWeb from './components/Scripts/Web/categories-web';
 import CategoriesMobile from './components/Scripts/Mobile/categories-mobile';
-import NavigationBanners from './components/navigation-banners/navigation-banners';
+import NavigationBannersWeb from './components/Scripts/Web/navigation-banners-web';
+import NavigationBannersMobile from './components/Scripts/Mobile/navigation-banners-mobile';
 import Lancamentos from './components/lancamentos/lancamentos';
 import Blog from './components/blog/blog';
 import Newsletter from './components/newsletter/newsletter';
@@ -105,7 +106,12 @@ function App() {
           <CategoriesWeb key="categories-web" />
         )}
         
-        <NavigationBanners />
+        {isMobile ? (
+          <NavigationBannersMobile key="navigation-banners-mobile" />
+        ) : (
+          <NavigationBannersWeb key="navigation-banners-web" />
+        )}
+        
         <Lancamentos onAddToCart={handleAddToCart} />
         <Blog />
       </main>
