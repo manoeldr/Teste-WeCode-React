@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header/Header';
+import HeaderWeb from './components/Scripts/Web/header-web';
+import HeaderMobile from './components/Scripts/Mobile/header-mobile';
 import BannerPrincipal from './components/banner-principal/banner-principal';
 import Categories from './components/categories/categories';
 import NavigationBanners from './components/navigation-banners/navigation-banners';
@@ -19,11 +20,10 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 393;
-      // Se mudou de mobile para web ou vice-versa, fecha o carrinho
       if (mobile !== isMobile) {
         setIsMinicartOpen(false);
+        setIsMobile(mobile);
       }
-      setIsMobile(mobile);
     };
 
     window.addEventListener('resize', handleResize);
@@ -76,10 +76,20 @@ function App() {
 
   return (
     <div className="app">
-      <Header 
-        cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-        onCartClick={handleOpenMinicart}
-      />
+      {isMobile ? (
+        <HeaderMobile 
+          key="header-mobile"
+          cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+          onCartClick={handleOpenMinicart}
+        />
+      ) : (
+        <HeaderWeb 
+          key="header-web"
+          cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+          onCartClick={handleOpenMinicart}
+        />
+      )}
+      
       <main>
         <BannerPrincipal />
         <Categories />
@@ -90,9 +100,9 @@ function App() {
       <Newsletter />
       <Footer />
       
-      {/* Renderiza apenas um por vez */}
       {isMobile ? (
         <MinicartMobile
+          key="mobile-minicart"
           isOpen={isMinicartOpen}
           onClose={handleCloseMinicart}
           cartItems={cartItems}
@@ -101,6 +111,7 @@ function App() {
         />
       ) : (
         <MinicartWeb
+          key="web-minicart"
           isOpen={isMinicartOpen}
           onClose={handleCloseMinicart}
           cartItems={cartItems}

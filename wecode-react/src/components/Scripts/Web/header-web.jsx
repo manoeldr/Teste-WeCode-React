@@ -1,79 +1,27 @@
-import { useState, useEffect } from 'react';
-import LocationModal from '../LocationModal/LocationModal';
-import MobileMenu from '../mobile-menu/mobile-menu';
-import './Header.scss';
+import { useHeader } from '../../Main/useHeader';
+import LocationModalWeb from './location-modal-web';
+import '../../Styles/Web/header-web.scss';
 
-export default function Header({ cartCount = 0, onCartClick }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [location, setLocation] = useState(() => {
-    return localStorage.getItem('user_location') || 'Uberlândia, MG';
-  });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState('sapatos');
-  const [activeNav, setActiveNav] = useState('');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const products = [
-    { id: 'sapatos', name: 'Sapatos', image: '/assets/menu-products/menu-products-1.svg' },
-    { id: 'scarpins', name: 'Scarpins', image: '/assets/menu-products/menu-products-2.svg' },
-    { id: 'sandalias', name: 'Sandálias', image: '/assets/menu-products/menu-products-3.svg' },
-    { id: 'botas', name: 'Botas', image: '/assets/menu-products/menu-products-4.svg' }
-  ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (isProductsOpen && !e.target.closest('.nav-item.dropdown') && !e.target.closest('.dropdown-menu')) {
-        setIsProductsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isProductsOpen]);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSaveLocation = (newLocation) => {
-    setLocation(newLocation);
-    localStorage.setItem('user_location', newLocation);
-  };
-
-  const handleProductsToggle = () => {
-    setIsProductsOpen(!isProductsOpen);
-    setActiveNav(isProductsOpen ? '' : 'produtos');
-  };
-
-  const handleProductHover = (productId) => {
-    setSelectedProduct(productId);
-  };
-
-  const handleNavClick = (e, navId) => {
-    e.preventDefault();
-    setActiveNav(navId);
-    if (navId !== 'produtos') {
-      setIsProductsOpen(false);
-    }
-  };
+export default function HeaderWeb({ cartCount = 0, onCartClick }) {
+  const {
+    scrolled,
+    location,
+    isModalOpen,
+    isProductsOpen,
+    selectedProduct,
+    activeNav,
+    products,
+    handleOpenModal,
+    handleCloseModal,
+    handleSaveLocation,
+    handleProductsToggle,
+    handleProductHover,
+    handleNavClick
+  } = useHeader();
 
   return (
     <>
-      <div className="top-bar">
+      <div className="top-bar top-bar-web">
         <div className="top-bar-container">
           <span className="location-text">
             Você está em: <strong>{location}</strong>
@@ -84,15 +32,14 @@ export default function Header({ cartCount = 0, onCartClick }) {
         </div>
       </div>
 
-      <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <header className={`header header-web ${scrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
-          {/* Desktop */}
-          <div className="header-logo desktop-only">
+          <div className="header-logo">
             <img src="/assets/img/logo_white.svg" alt="Logo" className="logo-white" />
             <img src="/assets/img/logo_gray.svg" alt="Logo" className="logo-gray" />
           </div>
 
-          <nav className="header-nav desktop-only">
+          <nav className="header-nav">
             <div className="nav-item dropdown">
               <button 
                 className={`nav-link ${activeNav === 'produtos' ? 'active' : ''}`}
@@ -147,32 +94,7 @@ export default function Header({ cartCount = 0, onCartClick }) {
             </div>
           </nav>
 
-          {/* Mobile */}
-          <div className="header-mobile mobile-only">
-            <button className="icon-button" onClick={() => setIsMobileMenuOpen(true)}>
-              <img src="/assets/icons/menu.svg" alt="Menu" />
-            </button>
-            
-            <button className="icon-button">
-              <img src="/assets/icons/search.svg" alt="Buscar" />
-            </button>
-
-            <div className="header-logo-mobile">
-              <img src="/assets/img/logo_white.svg" alt="Logo" className="logo-white" />
-              <img src="/assets/img/logo_gray.svg" alt="Logo" className="logo-gray" />
-            </div>
-
-            <button className="icon-button">
-              <img src="/assets/icons/account.svg" alt="Conta" />
-            </button>
-
-            <button className="icon-button shop-button" onClick={onCartClick}>
-              <img src="/assets/icons/shop.svg" alt="Carrinho" />
-              <span className="cart-count">{cartCount}</span>
-            </button>
-          </div>
-
-          <div className="header-right desktop-only">
+          <div className="header-right">
             <button className="icon-button" aria-label="Buscar">
               <img src="/assets/icons/search.svg" alt="Buscar" />
             </button>
@@ -187,7 +109,7 @@ export default function Header({ cartCount = 0, onCartClick }) {
         </div>
 
         {isProductsOpen && (
-          <div className="dropdown-menu desktop-only">
+          <div className="dropdown-menu">
             <div className="dropdown-content">
               <ul className="dropdown-list">
                 {products.map((product) => (
@@ -212,15 +134,10 @@ export default function Header({ cartCount = 0, onCartClick }) {
         )}
       </header>
 
-      <LocationModal
+      <LocationModalWeb
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onSave={handleSaveLocation}
-      />
-
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
       />
     </>
   );

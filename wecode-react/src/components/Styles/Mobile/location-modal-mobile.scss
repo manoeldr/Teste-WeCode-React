@@ -1,0 +1,135 @@
+@import '../../../App.scss';
+
+@media (max-width: 24.5625rem) {
+  .modal-overlay.modal-overlay-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+  }
+
+  .modal-content.modal-content-mobile {
+    background: #FFFFFF;
+    border-radius: 0;
+    padding: 1.5rem;
+    width: calc(100% - 2rem);
+    height: auto;
+    position: relative;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-content.modal-content-mobile .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #EEEEEE;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+
+    &:active {
+      color: #1D1D1D;
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .modal-content.modal-content-mobile .modal-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #1D1D1D;
+    margin-bottom: 2rem;
+    padding-right: 2rem;
+  }
+
+  .modal-content.modal-content-mobile .modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .modal-content.modal-content-mobile .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .modal-content.modal-content-mobile .form-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #1D1D1D;
+
+    .required {
+      color: #B11B26;
+    }
+  }
+
+  .modal-content.modal-content-mobile .form-input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border: 0.0625rem solid #E0E0E0;
+    border-radius: 0;
+    outline: none;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: #B11B26;
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+
+    &:disabled {
+      background: #F7F7F7;
+      cursor: not-allowed;
+    }
+  }
+
+  .modal-content.modal-content-mobile .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .modal-content.modal-content-mobile .submit-btn {
+    width: 100%;
+    background: #B11B26;
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+
+    &:active {
+      background: #8F1520;
+    }
+
+    &:disabled {
+      background: #CCC;
+      cursor: not-allowed;
+    }
+  }
+}
